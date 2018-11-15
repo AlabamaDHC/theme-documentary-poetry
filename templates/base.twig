@@ -1,0 +1,56 @@
+{% block html_head_container %}
+
+{% include 'html-header.twig' %}
+	{% block head %}
+	{% endblock %}
+	</head>
+{% endblock %}
+
+	<body>
+		<div class="uk-offcanvas-content">
+			<header>
+				{% block header %}
+					<div class="uk-container">
+					<nav class="uk-navbar-transparent" data-uk-navbar>
+						<div class="uk-navbar-left">
+							<a class="uk-navbar-item uk-logo" href="{{site.url}}" rel="home">{{site.name}}</a>
+						</div>
+						<div class="uk-navbar-right">
+							{% include "menu.twig" with {'menu': menu.get_items} %}
+						</div>
+					</nav>
+				</div>
+				{% endblock %}
+			</header>
+
+
+			<section id="hero" class="uk-section uk-section-large uk-section-secondary">
+				<div class="uk-container uk-container-small uk-text-center">
+					{% block hero %}
+						<h1>{{post.title}}</h1>
+					{% endblock %}
+				</div>
+			</section>
+
+
+			<section id="content" class="uk-section uk-section-muted">
+				<div class="uk-container">
+					{% block content %}
+						Sorry, no content
+					{% endblock %}
+				</div>
+			</section>
+
+
+
+
+
+			{% block footer %}
+				{% include 'footer.twig' %}
+				{{ function('wp_footer') }}
+			{% endblock %}
+		</div>
+
+		{% include 'mobile-menu.twig' with {'menu': menu.get_items} %}
+	</body>
+</html>

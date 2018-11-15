@@ -1,0 +1,23 @@
+{% if menu %}
+	<div id="offcanvas-nav" data-uk-offcanvas="flip: true; overlay: true">
+		<div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide">
+			<button class="uk-offcanvas-close uk-close uk-icon" type="button" data-uk-close></button>
+			<ul class="uk-nav uk-nav-default">
+				{% for item in menu %}
+					{% if item.get_children %}
+					<li class="uk-parent">
+						<a target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
+						<ul class="uk-nav-sub">
+							{% for child in item.get_children %}
+								<li><a target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a></li>
+							{% endfor %}
+						</ul>
+					</li>
+					{% else %}
+						<li><a target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a></li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+{% endif %}

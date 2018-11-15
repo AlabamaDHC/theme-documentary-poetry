@@ -1,0 +1,38 @@
+{% extends "base.twig" %}
+
+{% block hero %}
+	<h1>{{post.title}}</h1>
+	<style>
+		#hero {
+			background-image: url({{ post.get_field('author_page_image').url }});
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center;
+		}
+	</style>
+{% endblock %}
+
+{% block content %}
+	<div class="content-wrapper">
+		<article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
+			<section class="article-content">
+				<!-- <h1 class="article-h1">Author: {{ post.title }} {{author_cat}}</h1> -->
+				<!-- <p class="blog-author">
+					<span>By</span><a href="{{post.author.path}}"> {{ post.author.name }} </a><span>&bull;</span> {{ post.date }}
+				</p> -->
+				<div class="article-body">
+					{{post.content}}
+
+					{% for item in posts %}
+					<div class="uk-card uk-card-default uk-card-body uk-margin">
+						<h3 class="uk-card-title">{{item.title}}</h3>
+						<p>{{item.content}}</p> 
+						<a href="{{item.link}}" class="uk-button uk-button-default">Read more</a>
+					</div>
+					{% endfor %}
+
+				</div>
+			</section>
+		</article>
+	</div><!-- /content-wrapper -->
+{% endblock %}
